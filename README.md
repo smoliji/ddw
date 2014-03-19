@@ -10,6 +10,10 @@ Info
 
 Example outputs
 ----
-Example outputs are located in
+Example outputs are located in [docs](https://github.com/smoliji/ddw/tree/master/docs).
+
+Image files shows output of application to certain text.
+
+HTML files are copy-pasted page from the application response (does not include stylesheets, but is enough to get picture whats the app doing)
 
 
