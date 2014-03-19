@@ -1,0 +1,37 @@
+Phase: MyPhase
+Input: Lookup Token
+Options: control = appelt
+ 
+Rule: MyLocationRule
+(
+  {Lookup.majorType == "location"}
+):referenceLoc
+-->
+ :referenceLoc.Location = { rule= "MyLocationRule" }
+ 
+Rule: MyOrganizationRule
+(
+  {Lookup.majorType == "organization"}
+):referenceOrg
+-->
+ :referenceOrg.Organization = { rule= "MyOrganizationRule" }
+
+Rule: MyPersonRule
+(
+    ({Lookup.majorType == "jobtitle"})+(({Token.category == "IN"}|{Token.category == "DT"})*)+({Lookup.majorType == "organization"}|{Lookup.majorType == "location"})
+):referencePerson
+-->
+ :referencePerson.Person = { rule= "MyPersonRule" }
+ 
+Rule: MyItemRule
+(
+  (
+      (({Token.kind == "word", Token.length == "1"}|{Token.kind == "number"})+)
+  )
+  |
+  (
+    ({Token.category == "JJ"})+((({Token.category == "NN"}) | ({Token.category == "NNP"}) | ({Token.category == "NNS"}) )+)
+  )
+):refItem
+-->
+ :refItem.Item = { rule = "MyItemRule" }
